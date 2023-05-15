@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(217, 234, 234);
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+#searchInput {
+  border: none;
+  outline: none;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px; /* Increase the height of the search bar */
+  font-size: 1.2rem; /* Increase the font size */
+}
+
+#searchInput:focus {
+  border-bottom: 2px solid #4575b6;
+}
+
+.app {
+  width: 80vw;
+  height: 100vh;
+  margin: 20px 0;
+}
+
+/* Collapse all borders separating each cell. Table takes up entire width of .app. Set gray shadow around table */
+table {
+  border-collapse: collapse;
+  width: 200%;
+  box-shadow: 0 5px 7px gray;
+}
+
+/* Set shadow on just the table head */
+thead {
+  box-shadow: 0px 0px 10px gray;
+}
+
+/* Add some space around table heading. Align text to right and transform to uppercase */
+th {
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+/* Add padding on each cell */
+td {
+  padding: 0.5rem 3rem;
+  font-size: 1rem;
+}
+
+/* Create alternating color(blue) across the rows. Set blue on all even ones (2, 4, 6 ...) */
+tr:nth-child(even) {
+  background-color: #dee8f5;
+}
+
+#users-list {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: 10px auto;
+  background-color: rgb(132, 202, 205);
+  padding: 10px;
+  text-align: center;
+  border: 4px solid black;
+  color: white;
+  text-shadow: 3px 3px black;
+  font-variant: small-caps;
+  font-size: 2rem;
+}
+
+.column {
+  float: left;
+  margin: 20px;
+  width: 33.33%;
+  height: 200px;
+  border: 2px solid black;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.search-container {
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 5px;
+  height: 80px; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.search-container input[type="text"] {
+  width: 80%;
+  height: 100%;
+  
+  border-radius: 5px;
+  border: 1px solid rgba(174, 14, 14, 0.2);
+  padding: 0px 10px;
+  font-size: 1.2rem;;
+  color: #3d3c3c;
+  background-color: rgb(0, 255, 255);
+  outline: none;
+}
+
+.search-container button[type="submit"] {
+  width: 15%;
+  height: 100%; 
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(172, 131, 211);
+  color: rgb(172, 131, 211);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-container button[type="submit"]:hover {
+  background-color: rgb(217, 234, 234);
+}
+
+#grid {
+  border: solid 2px black;
+  font-size: x-large;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  width: 50%;
+  margin: 0px;
+  border-radius: 30px;
+  background-color: rgb(132, 202, 205);
+  color: rgb(0, 0, 0);
+}
+

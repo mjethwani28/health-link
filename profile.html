@@ -1,0 +1,90 @@
+<html> 
+    <head>
+    <title>Doctor Form</title> 
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+</head> 
+    <script>
+
+function storeData(event) {
+  event.preventDefault();
+
+  var name = document.getElementById("dname").value;
+  var email = document.getElementById("email").value;
+
+  firebase.database().ref('users/' + name).set({
+    email: email
+  });
+}
+
+    function validuser() {
+    var d=document.getElementById("dname").value; 
+    let regex=/^[a-zA-Z0-9]$/
+    if(d.length==0 || d.length==null){
+    document.getElementById("u").innerHTML="Name cannot be empty"; 
+}   else{
+    document.getElementById("u").innerHTML="Valid";
+    } 
+    function validpass() {
+    var pa=document.getElementById("pass").value;
+    let re=/^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&.!]).{8,20}$/ 
+    
+    if(pa.length==0 || pa.length==null){
+    document.getElementById("p").innerHTML="Password cannot be empty"; }
+    else if(!pa.match(re)){
+    document.getElementById("p").innerHTML="Password must contain atleast one digit, one lowercase letter, one uppercase letter, one special character and the length should be between 8 to 20"; }
+    else{
+    document.getElementById("p").innerHTML="Valid";
+    } }
+    function validaadhar() {
+    var adh=document.getElementById("aadhar").value;
+    let regex=/^([0-9]{4}[0-9]{4}[0-9]{4})||([0-9]{4}\s[0-9]{4}\s[0-9]{4})||([0-9]{4}-[0-9]{4}-[0-9]{4})$/
+    if(adh.length==0 || adh.length==null){ 
+        document.getElementById("ad").innerHTML="Aadhar number cannot be empty";
+    }
+    else if(!adh.match(regex)){
+    document.getElementById("ad").innerHTML="Aadhar number must contain 12 digits"; }
+    else{
+    document.getElementById("ad").innerHTML="Valid";
+    
+     } }
+    function validmob() {
+    var mob=document.getElementById("mob").value; let regex=/^[0-9]{10}$/
+    if(mob.length==0 || mob.length==null){
+    document.getElementById("mo").innerHTML="Mobile number cannot be empty"; }
+    else if(!mob.match(regex)){
+    document.getElementById("mo").innerHTML="Mobile number must contain 10 digits";
+    } else{
+    document.getElementById("mo").innerHTML="Valid"; }
+    }
+    function validmail() {
+    var ma=document.getElementById("email").value; let regex=/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
+    if(ma.length==0 || ma.length==null){
+    document.getElementById("em").innerHTML="Email cannot be empty"; }
+    else if(!mob.match(regex)){ document.getElementById("em").innerHTML="Email must contain @";
+    } else{
+    document.getElementById("em").innerHTML="Valid"; }
+    }}
+</script>
+    <body>
+    <h2>Doctor Form</h2> 
+    <form onsubmit="storeData(event)">
+    <label for="dname">Doctor Name : </label>
+    <input type="text" id="dname" placeholder="Enter your name" required onkeyup="validuser()"> 
+    <p id="u"></p>
+    <label for="pass">Password : </label>
+    <input type="password" id="pass" placeholder="Password here" required onkeyup="validpass()"> <p id="p"></p>
+    <label for="cpass">Confirm password : </label>
+    <input type="password" id="cpass" placeholder="Confirm password" required>
+    <p id="cp"></p>
+    <label for="aadhar">Aadhar : </label>
+    <input type="text" id="aadhar" placeholder="1234/12345/12345" required onkeyup="validaadhar()"> <p id="ad"></p>
+    <label for="mob">Mobile no. : </label>
+    <input type="tel" id="mob" placeholder="+91 xxxx nnnnnn" required onkeyup="validmob()"> <p id="mo"></p>
+    <label for="email">Email id : </label>
+    <input type="email" id="email" placeholder="abc@gmail.com" required onkeyup="validmail()"> <p id="em"></p>  
+    </p>
+    <button type="submit" value="Submit" onclick="validform()">Submit</button> <button type="reset" value="Reset">Reset</button>
+    </form> </body>
+    </html>

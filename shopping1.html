@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="shopping1.css  ">
+  <head>
+    <meta charset="UTF-8">
+    <title>Medicine Store</title>
+  </head>
+  <body class="body">
+    <div class="button:hover">
+    <center><h2 class="h2">Medicine Store</h2></center>
+    <table class="table">
+      <thead class="thead">
+        <tr>
+            
+          <th>Medicine</th>
+          <th>Price</th>
+          <th>Action</th>
+        
+        </tr>
+      </thead>
+      <tbody class="tbody tr:nth-child(even)" id="medicines">
+      </tbody>
+    </table>
+    <h3 class="h3">Shopping Cart</h3>
+    <table>
+      <thead class="th">
+        <tr>
+            
+          <th>Medicine</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Action</th>
+        
+        </tr>
+      </thead>
+      <tbody id="cart">
+      </tbody>
+    </table>
+    <h3 class="cart-total"> <span id="cart-total"></span></h3>
+</div>
+    <script>
+      // Define the list of medicines
+      var medicines = [
+        {name: 'Paracetamol', price: 30.00},
+        {name: 'Ibuprofen', price: 50.00},
+        {name: 'Aspirin', price: 40.00},
+        {name: 'Antacids', price: 70.00},
+        {name: 'Cough syrup', price: 120.00},
+        {name: 'Antihistamines', price: 135.00},
+        {name: 'Multivitamins', price: 200.00}
+      ];
+      // Define the cart as an empty array
+      var cart = [];
+      // Get references to the DOM elements
+      var medicinesTable = document.getElementById('medicines');
+      var cartTable = document.getElementById('cart');
+      var cartTotal = document.getElementById('cart-total');
+      // Loop through the list of medicines and add them to the table
+      for (var i = 0; i < medicines.length; i++) {
+        var row = document.createElement('tr');
+        var nameCell = document.createElement('td');
+        var priceCell = document.createElement('td');
+        var actionCell = document.createElement('td');
+        var addButton = document.createElement('button');
+        nameCell.textContent = medicines[i].name;
+        priceCell.textContent = medicines[i].price.toFixed(2);
+        addButton.textContent = 'Add to Cart';
+        addButton.addEventListener('click', addToCart.bind(null, medicines[i]));
+        actionCell.appendChild(addButton);
+        row.appendChild(nameCell);
+        row.appendChild(priceCell);
+        row.appendChild(actionCell);
+        medicinesTable.appendChild(row);
+      }
+      // Define the function to add an item to the cart
+      function addToCart(medicine) {
+        // Check if the item is already in the cart
+        var index = -1;
+        for (var i = 0; i < cart.length; i++) {
+          if (cart[i].name === medicine.name) {
+            index = i;
+            break;
+          }
+        }
+        // If the item is already in the cart, increase the quantity
+        if (index !== -1) {
+          cart[index].quantity++;
+        }
+        // If the item is not in the cart, add it with quantity 1
+        else {
+          cart.push({
+            name: medicine.name,
+            price: medicine.price,
+            quantity: 1
+          });
+        }
+        // Update the cart table
+        updateCart();
+      }
+      // Define the function to remove an item from the cart
+      function removeFromCart(name) {
+    // Find the item in the cart
+    var index = -1;
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i].name === name) {
+        index = i;
+        break;
+      }
+    }
+    // Remove the item from the cart
+    cart.splice(index, 1);
+    // Update the cart table
+    updateCart();
+  }
+  // Define the function to update the cart table
+  function updateCart() {
+    // Clear the cart table
+    cartTable.innerHTML = '';
+    // Loop through the items in the cart and add them to the table
+    for (var i = 0; i < cart.length; i++) {
+      var row = document.createElement('tr');
+      var nameCell = document.createElement('td');
+      var quantityCell = document.createElement('td');
+      var priceCell = document.createElement('td');
+      var actionCell = document.createElement('td');
+      var removeButton = document.createElement('button');
+      nameCell.textContent = cart[i].name;
+      quantityCell.textContent = cart[i].quantity;
+      priceCell.textContent = (cart[i].price * cart[i].quantity).toFixed(2);
+      removeButton.textContent = 'Remove';
+      removeButton.addEventListener('click', removeFromCart.bind(null, cart[i].name));
+      actionCell.appendChild(removeButton);
+      row.appendChild(nameCell);
+      row.appendChild(quantityCell);
+      row.appendChild(priceCell);
+      row.appendChild(actionCell);
+      cartTable.appendChild(row);
+    }
+    // Update the cart total
+    cartTotal.textContent = calculateCartTotal().toFixed(2);
+  }
+  // Define the function to calculate the total price of the items in the cart
+  function calculateCartTotal() {
+    var total = 0;
+    for (var i = 0; i < cart.length; i++) {
+      total += cart[i].price * cart[i].quantity;
+    }
+    return total;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" rel="stylesheet">
+
+	<!-- Html2Pdf -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js" integrity="sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="pat.css">
+
+</head>
+
+<body>
+    <div id="pform">
+        <h1>Patient Enrollment Form</h1>
+    </div>
+	<form id="form-print" enctype="text/plain" class="form-control" >
+		<label for="name"><strong> Patients Name: </strong></label>
+		<input class="form-control" type="text" id="name" name="Name" placeholder="Enter Name" size="50"><br>
+
+		<label for="gender"><strong>Gender: </strong></label>
+		<select class="form-control" id="gender" name="gender">
+            <option value="Others">Others</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+		</select><br>
+
+        <label for="age"><strong>Patients Age: </strong></label>
+		<input class="form-control" type="text" id="age" name="Age" placeholder="Enter Age"><br>
+
+        <label for="dob">Date of Birth:</label>
+       <input type="date" id="dob" name="dob" required><br><br>
+
+        <label for="phno"><strong>Patients Contact Number: </strong></label>
+		<input class="form-control" type="text" id="phno" name="phno" placeholder="000 000 0000"><br>
+
+        <label for="addr"><strong>Patients Address: </strong></label>
+		<textarea class="form-control" type="text" id="addr" name="addr" placeholder="Eg: Flat no, Building name , Street , City ...." style="height:80px"></textarea><br>
+
+		<label for="med"><strong>Medical History: </strong></label>
+		<textarea class="form-control" id="med" name="med" placeholder="Eg: Diabetes, Thyroid" style="height:80px"></textarea><br>
+
+		<button class="btn btn-primary" onclick="GeneratePdf();" type="button">Generate PDF</button>
+	
+	</form>
+
+	<script>
+		// Function to generate PDF
+		function GeneratePdf() {
+			var element = document.getElementById('form-print');
+			html2pdf(element);
+		}
+
+		// Function to save user's info
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+</body>
+</html>

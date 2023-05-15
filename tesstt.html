@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Bar</title>
+  <style>
+    #search-input {
+      width: 300px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    #search-results {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="search-input" placeholder="Search by spec" onkeyup="searchSpecs()" />
+  <div id="search-results"></div>
+
+  <script>
+    var specs = [
+      { name: 'Processor', value: 'Intel Core i7' },
+      { name: 'RAM', value: '16GB' },
+      { name: 'Storage', value: '1TB SSD' },
+      { name: 'Graphics Card', value: 'NVIDIA GeForce GTX 1080' },
+      { name: 'Operating System', value: 'Windows 10' },
+      { name: 'Screen Size', value: '15.6 inches' },
+      { name: 'Resolution', value: '1920x1080' },
+      { name: 'Battery Life', value: '8 hours' },
+      { name: 'Weight', value: '4.5 pounds' },
+    ];
+
+    function searchSpecs() {
+      var searchInput = document.getElementById('search-input').value.toLowerCase();
+      var searchResults = document.getElementById('search-results');
+      searchResults.innerHTML = '';
+
+      if (searchInput === '') {
+        return;
+      }
+
+      var filteredSpecs = specs.filter(function(spec) {
+        return (
+          spec.name.toLowerCase().indexOf(searchInput) !== -1 ||
+          spec.value.toLowerCase().indexOf(searchInput) !== -1
+        );
+      });
+
+      filteredSpecs.forEach(function(spec) {
+        var specElement = document.createElement('p');
+        specElement.textContent = spec.name + ': ' + spec.value;
+        searchResults.appendChild(specElement);
+      });
+    }
+  </script>
+</body>
+</html>
